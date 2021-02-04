@@ -1,0 +1,235 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title":"Irish Primary School Explorer",
+
+  "hconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+      },
+      "width": 150,
+      "height": 780,
+      "mark": "bar",
+      "selection": {
+        "click": {
+          "fields": [
+            "County"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "Sex"
+          }
+        },
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "aggregate": "count",
+          "field": "Roll_No",
+          "type": "quantitative",
+          "title": "Schools"
+        },
+        "y": {
+          "field": "County",
+          "type": "nominal",
+          "title": null
+        },
+        "color": {
+          "condition": {
+            "selection": "click",
+            "field": "Sex",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Boys",
+                "Girls",
+                "Mixed"
+              ],
+              "range": [
+                "#00C7A9",
+                "#8101FA",
+                "#9c9ede"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "vconcat": [
+        {
+          "layer": [
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/colmr/vis_class/master/Ireland_custom_topjson.json",
+                "format": {
+                  "type": "topojson",
+                  "feature": "IRL_adm1"
+                }
+              },
+              "projection": {
+                "type": "equalEarth"
+              },
+              "width": 600,
+              "height": 600,
+              "mark": {
+                "type": "geoshape",
+                "stroke": "white"
+              },
+              "encoding": {
+                "color": {
+                  "value": "Lightgrey"
+                }
+              }
+            },
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+              },
+              "projection": {
+                "type": "equalEarth"
+              },
+              "width": 600,
+              "height": 600,
+              "mark": "circle",
+              "transform": [
+                {
+                  "filter": {
+                    "selection": "click"
+                  }
+                },
+                {
+                  "filter": {
+                    "selection": "brush"
+                  }
+                }
+              ],
+              "selection": {
+                "Sex": {
+                  "type": "single",
+                  "fields": [
+                    "Sex"
+                  ],
+                  "bind": "legend"
+                }
+              },
+              "encoding": {
+                "opacity": {
+                  "condition": {
+                    "selection": "Sex",
+                    "value": 1
+                  },
+                  "value": 0
+                },
+                "longitude": {
+                  "field": "Long",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "Lat",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "Sex",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "Boys",
+                      "Girls",
+                      "Mixed"
+                    ],
+                    "range": [
+                      "#00C7A9",
+                      "#8101FA",
+                      "#9c9ede"
+                    ]
+                  }
+                },
+                "size": {
+                  "field": "Total",
+                  "type": "quantitative",
+                  "scale": {
+                    "type": "quantile",
+                    "domain": [
+                      0,
+                      501,
+                      999
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+          },
+          "width": 600,
+          "height": 150,
+          "mark": "bar",
+          "selection": {
+            "brush": {
+              "encodings": [
+                "x"
+              ],
+              "type": "interval"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "selection": "Sex"
+              }
+            },
+            {
+              "filter": {
+                "selection": "click"
+              }
+            }
+          ],
+          "encoding": {
+            "color": {
+              "condition": {
+                "selection": "brush",
+                "value": "black"
+              },
+              "value": "lightgray"
+            },
+            "x": {
+              "field": "Total",
+              "type": "quantitative",
+              "title": "Number Of Students",
+              "bin": {
+                "step": 20,
+                "anchor": 0,
+                "extent":[0,960]
+              },
+              "scale": {
+                "domain": [
+                  0,
+                  960
+                ]
+              }
+            },
+            "y": {
+              "aggregate": "count",
+              "field": "Roll_No",
+              "type": "quantitative",
+              "title": "Schools"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {"title": { "align": "center", "fontSize": 40, "orient": "top", "anchor": "middle"  }}
+}

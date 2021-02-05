@@ -1,0 +1,323 @@
+<html><head><style id="vega-tooltip-style">#vg-tooltip-element {
+  visibility: hidden;
+  padding: 8px;
+  position: fixed;
+  z-index: 1000;
+  font-family: sans-serif;
+  font-size: 11px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d9d9d9;
+  color: black; }
+  #vg-tooltip-element.visible {
+    visibility: visible; }
+  #vg-tooltip-element h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 13px; }
+  #vg-tooltip-element table {
+    border-spacing: 0; }
+    #vg-tooltip-element table tr {
+      border: none; }
+      #vg-tooltip-element table tr td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 2px;
+        padding-bottom: 2px; }
+        #vg-tooltip-element table tr td.key {
+          color: #808080;
+          max-width: 150px;
+          text-align: right;
+          padding-right: 4px; }
+        #vg-tooltip-element table tr td.value {
+          display: block;
+          max-width: 300px;
+          max-height: 7em;
+          text-align: left; }
+  #vg-tooltip-element.dark-theme {
+    background-color: rgba(32, 32, 32, 0.9);
+    border: 1px solid #f5f5f5;
+    color: white; }
+    #vg-tooltip-element.dark-theme td.key {
+      color: #bfbfbf; }
+</style>
+    <title> Daniel Stein Json VegaLite Project</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+<style id="vega-embed-style">.vega-embed {<br>  position: relative;<br>  display: inline-block; }<br>  .vega-embed.has-actions {<br>    padding-right: 38px; }<br>  .vega-embed details:not([open]) > :not(summary) {<br>    display: none !important; }<br>  .vega-embed summary {<br>    list-style: none;<br>    position: absolute;<br>    top: 0;<br>    right: 0;<br>    padding: 6px;<br>    z-index: 1000;<br>    background: white;<br>    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);<br>    color: #1b1e23;<br>    border: 1px solid #aaa;<br>    border-radius: 999px;<br>    opacity: 0.2;<br>    transition: opacity 0.4s ease-in;<br>    outline: none;<br>    cursor: pointer;<br>    line-height: 0px; }<br>    .vega-embed summary::-webkit-details-marker {<br>      display: none; }<br>    .vega-embed summary:active {<br>      box-shadow: #aaa 0px 0px 0px 1px inset; }<br>    .vega-embed summary svg {<br>      width: 14px;<br>      height: 14px; }<br>  .vega-embed details[open] summary {<br>    opacity: 0.7; }<br>  .vega-embed:hover summary,<br>  .vega-embed:focus summary {<br>    opacity: 1 !important;<br>    transition: opacity 0.2s ease; }<br>  .vega-embed .vega-actions {<br>    position: absolute;<br>    top: 35px;<br>    right: -9px;<br>    display: flex;<br>    flex-direction: column;<br>    padding-bottom: 8px;<br>    padding-top: 8px;<br>    border-radius: 4px;<br>    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);<br>    border: 1px solid #d9d9d9;<br>    background: white;<br>    animation-duration: 0.15s;<br>    animation-name: scale-in;<br>    animation-timing-function: cubic-bezier(0.2, 0, 0.13, 1.5); }<br>    .vega-embed .vega-actions a {<br>      padding: 8px 16px;<br>      font-family: sans-serif;<br>      font-size: 14px;<br>      font-weight: 600;<br>      white-space: nowrap;<br>      color: #434a56;<br>      text-decoration: none; }<br>      .vega-embed .vega-actions a:hover {<br>        background-color: #f7f7f9;<br>        color: black; }<br>    .vega-embed .vega-actions::before, .vega-embed .vega-actions::after {<br>      content: "";<br>      display: inline-block;<br>      position: absolute; }<br>    .vega-embed .vega-actions::before {<br>      left: auto;<br>      right: 14px;<br>      top: -16px;<br>      border: 8px solid #0000;<br>      border-bottom-color: #d9d9d9; }<br>    .vega-embed .vega-actions::after {<br>      left: auto;<br>      right: 15px;<br>      top: -14px;<br>      border: 7px solid #0000;<br>      border-bottom-color: #fff; }<br><br>.vega-embed-wrapper {<br>  max-width: 100%;<br>  overflow: scroll;<br>  padding-right: 14px; }<br><br>@keyframes scale-in {<br>  from {<br>    opacity: 0;<br>    transform: scale(0.6); }<br>  to {<br>    opacity: 1;<br>    transform: scale(1); } }<br></style></head>
+<body style="cursor: default;">
+    <table style="width: 850px" cellspacing="5" cellpadding="5">
+    <tbody>
+    <tr>
+    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+    <td style="vertical-align: top;">Daniel Stein</td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Project:</strong></td>
+    <td style="vertical-align: top;">Data Visualization</td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+    <td style="vertical-align: top;">
+    <p><a href="https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv target="_blank" rel="noopener">Ireland Primary Schools</a>.</p>
+    <p>This project is entirel done with json/VegaLite. The visualization bellow shows the primary schools in Ireland. Each dot represents a school, the colour represents whethere it is a boys, girls, or mixed school, and the size shows the number of students.
+
+    This graph is interactive, one can choose the Sex, Province, and select a group of number of students.</p>
+    </td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong></strong></td>
+    <td style="vertical-align: top;"></td>
+    </tr>
+    </tbody>
+    </table>
+    <hr>
+  <div class="container vega-embed has-actions" id="vis"><canvas width="587" height="625" class="marks"></canvas><div class="vega-bindings"></div><details title="Click to view actions"><summary>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 16 16">
+  <circle cx="2" cy="8" r="2" />
+  <circle cx="8" cy="8" r="2" />
+  <circle cx="14" cy="8" r="2" />
+</svg></summary><div class="vega-actions"><a href="#" target="_blank" download="visualization.svg">Save as SVG</a><a href="#" target="_blank" download="visualization.png">Save as PNG</a><a href="#">View Source</a><a href="#">View Compiled Vega</a><a href="#">Open in Vega Editor</a></div></details></div>
+  <script type="text/javascript">
+    var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title":"Irish Primary School Explorer",
+
+  "hconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+      },
+      "width": 150,
+      "height": 780,
+      "mark": "bar",
+      "selection": {
+        "click": {
+          "fields": [
+            "County"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "Sex"
+          }
+        },
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "aggregate": "count",
+          "field": "Roll_No",
+          "type": "quantitative",
+          "title": "Schools"
+        },
+        "y": {
+          "field": "County",
+          "type": "nominal",
+          "title": null
+        },
+        "color": {
+          "condition": {
+            "selection": "click",
+            "field": "Sex",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Boys",
+                "Girls",
+                "Mixed"
+              ],
+              "range": [
+                "#00C7A9",
+                "#8101FA",
+                "#9c9ede"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "vconcat": [
+        {
+          "layer": [
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/colmr/vis_class/master/Ireland_custom_topjson.json",
+                "format": {
+                  "type": "topojson",
+                  "feature": "IRL_adm1"
+                }
+              },
+              "projection": {
+                "type": "equalEarth"
+              },
+              "width": 600,
+              "height": 600,
+              "mark": {
+                "type": "geoshape",
+                "stroke": "white"
+              },
+              "encoding": {
+                "color": {
+                  "value": "Lightgrey"
+                }
+              }
+            },
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+              },
+              "projection": {
+                "type": "equalEarth"
+              },
+              "width": 600,
+              "height": 600,
+              "mark": "circle",
+              "transform": [
+                {
+                  "filter": {
+                    "selection": "click"
+                  }
+                },
+                {
+                  "filter": {
+                    "selection": "brush"
+                  }
+                }
+              ],
+              "selection": {
+                "Sex": {
+                  "type": "single",
+                  "fields": [
+                    "Sex"
+                  ],
+                  "bind": "legend"
+                }
+              },
+              "encoding": {
+                "opacity": {
+                  "condition": {
+                    "selection": "Sex",
+                    "value": 1
+                  },
+                  "value": 0
+                },
+                "longitude": {
+                  "field": "Long",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "Lat",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "Sex",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "Boys",
+                      "Girls",
+                      "Mixed"
+                    ],
+                    "range": [
+                      "#00C7A9",
+                      "#8101FA",
+                      "#9c9ede"
+                    ]
+                  }
+                },
+                "size": {
+                  "field": "Total",
+                  "type": "quantitative",
+                  "scale": {
+                    "type": "quantile",
+                    "domain": [
+                      0,
+                      501,
+                      999
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/colmr/vis_class/master/primary_schools.csv"
+          },
+          "width": 600,
+          "height": 150,
+          "mark": "bar",
+          "selection": {
+            "brush": {
+              "encodings": [
+                "x"
+              ],
+              "type": "interval"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "selection": "Sex"
+              }
+            },
+            {
+              "filter": {
+                "selection": "click"
+              }
+            }
+          ],
+          "encoding": {
+            "color": {
+              "condition": {
+                "selection": "brush",
+                "value": "black"
+              },
+              "value": "lightgray"
+            },
+            "x": {
+              "field": "Total",
+              "type": "quantitative",
+              "title": "Number Of Students",
+              "bin": {
+                "step": 20,
+                "anchor": 0,
+                "extent":[0,960]
+              },
+              "scale": {
+                "domain": [
+                  0,
+                  960
+                ]
+              }
+            },
+            "y": {
+              "aggregate": "count",
+              "field": "Roll_No",
+              "type": "quantitative",
+              "title": "Schools"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {"title": { "align": "center", "fontSize": 40, "orient": "top", "anchor": "middle"  }}
+}
+        vegaEmbed("#vis", yourVlSpec);
+  </script>
+
+
+</body></html>

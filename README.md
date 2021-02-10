@@ -10,3 +10,7 @@ https://htmlpreview.github.io/?https://github.com/DanStein91/Projects/blob/main/
 Scraping and sentiment analysis:
 
 https://htmlpreview.github.io/?https://github.com/DanStein91/Projects/blob/main/Python_scrape_classification_model/Assignment2.html
+
+To view VegaLite visualization, you can input the json code from the .txt into the following website:
+
+https://vega.github.io/editor/#/custom/vega-lite
